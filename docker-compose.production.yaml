@@ -1,11 +1,13 @@
 version: '3.8'
 
-services:
-  base: &base
-    image: chatwoot/chatwoot:latest
-    env_file: .env
-    volumes:
-      - storage_data_v2:/app/storage
+base: &base
+  build:
+    context: .
+    dockerfile: ./docker/Dockerfile
+  image: chatwoot-growfik-v3:latest
+  env_file: .env
+  volumes:
+    - storage_data_v2:/app/storage
 
   migrations:
     <<: *base
